@@ -1,0 +1,610 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>写入过程-索引在内存的数据结构 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="消息消费.html" />
+    
+    
+    <link rel="prev" href="写入过程-索引持久化.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../install/">
+            
+                <a href="../install/">
+            
+                    
+                    安装部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../install/erlang.html">
+            
+                <a href="../install/erlang.html">
+            
+                    
+                    Erlang安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../install/sourceCode.html">
+            
+                <a href="../install/sourceCode.html">
+            
+                    
+                    源码安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../install/rpm.html">
+            
+                <a href="../install/rpm.html">
+            
+                    
+                    rpm安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../install/cluster_install.html">
+            
+                <a href="../install/cluster_install.html">
+            
+                    
+                    集群搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    实现原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="启动.html">
+            
+                <a href="启动.html">
+            
+                    
+                    启动过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="连接和通道.html">
+            
+                <a href="连接和通道.html">
+            
+                    
+                    连接和通道
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="写入概要.html">
+            
+                <a href="写入概要.html">
+            
+                    
+                    写入概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="写入过程-索引持久化.html">
+            
+                <a href="写入过程-索引持久化.html">
+            
+                    
+                    写入过程-索引持久化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.5" data-path="写入过程-索引在内存的数据结构.html">
+            
+                <a href="写入过程-索引在内存的数据结构.html">
+            
+                    
+                    写入过程-索引在内存的数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="消息消费.html">
+            
+                <a href="消息消费.html">
+            
+                    
+                    消息消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="确认机制.html">
+            
+                <a href="确认机制.html">
+            
+                    
+                    确认机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="事务.html">
+            
+                <a href="事务.html">
+            
+                    
+                    事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="队列速率.html">
+            
+                <a href="队列速率.html">
+            
+                    
+                    队列速率
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="RabbitMQ内存监控.html">
+            
+                <a href="RabbitMQ内存监控.html">
+            
+                    
+                    RabbitMQ内存监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="限流机制.html">
+            
+                <a href="限流机制.html">
+            
+                    
+                    限流机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="RabbitMQ Manager插件管理统计模块.html">
+            
+                <a href="RabbitMQ Manager插件管理统计模块.html">
+            
+                    
+                    RabbitMQ Manager插件管理统计模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="脑裂丢数调研.html">
+            
+                <a href="脑裂丢数调研.html">
+            
+                    
+                    脑裂丢数调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >写入过程-索引在内存的数据结构</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x5199;&#x5165;&#x8FC7;&#x7A0B;-&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;">&#x5199;&#x5165;&#x8FC7;&#x7A0B;-&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;</h1>
+<p>&#x6709;&#x4EBA;&#x53EF;&#x80FD;&#x4F1A;&#x95EE;,&#x5728;&#x7D22;&#x5F15;&#x6301;&#x4E45;&#x5316;&#x90A3;&#x7AE0;&#x4E2D;&#x4E0D;&#x662F;&#x6709;&#x8BF4;&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7528;map&#x5B58;&#x50A8;,&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x5237;&#x76D8;&#x5462;?</p>
+<p>&#x5176;&#x5B9E; ==&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x72B6;&#x6001;,&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x6709;&#x4FDD;&#x5B58;&#x6709;&#x591A;&#x5C11;&#x6570;&#x636E;,&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x91CC;&#x7684;&#x7D22;&#x5F15;&#x7684;&#x6D88;&#x606F;&#x5BF9;&#x5E94;&#x4EC0;&#x4E48;&#x72B6;&#x6001;&#x7B49;==. </p>
+<p>&#x800C;&#x672C;&#x7AE0;&#x8BF4;&#x7684;&#x662F;&#x6D88;&#x606F;&#x7684;&#x5B9E;&#x4F53;&#x5185;&#x5BB9;&#x600E;&#x4E48;&#x4FDD;&#x5B58;&#x5728;&#x5185;&#x5B58;&#x91CC;,&#x5F53;&#x6D88;&#x8D39;&#x8005;&#x6765;&#x6D88;&#x8D39;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;,&#x6D88;&#x8D39;&#x8005;&#x53BB;&#x54EA;&#x4E2A;&#x5185;&#x5B58;&#x5757;&#x62FF;&#x6570;&#x636E;.</p>
+<p>RabbitMQ&#x7684;&#x6D88;&#x606F;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x6307;&#x5B9A;&#x4E86;&#x6D88;&#x606F;&#x9700;&#x8981;&#x6301;&#x4E45;&#x5316;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6BCF;&#x6B21;&#x5199;&#x5165;,&#x81F3;&#x5C11;&#x4F1A;&#x5F80;&#x5185;&#x6838;&#x91CC;&#x5199;&#x4E00;&#x6B21;&#x5199;&#x6570;&#x636E;.&#x5982;&#x679C;==&#x6D88;&#x606F;&#x662F;&#x975E;&#x6301;&#x4E45;&#x5316;,&#x4F46;&#x662F;&#x6D88;&#x606F;&#x8FC7;&#x591A;,&#x5185;&#x5B58;&#x7D27;&#x5F20;&#x7684;&#x60C5;&#x51B5;&#x4E0B;,RabbitMQ&#x4E5F;&#x4F1A;&#x5F3A;&#x5236;&#x5C06;&#x6D88;&#x606F;&#x8FDB;&#x884C;&#x5C06;&#x6570;&#x636E;&#x5237;&#x5230;&#x78C1;&#x76D8;==&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x552F;&#x4E00;&#x4E0D;&#x540C;&#x7684;&#x5C31;&#x662F; ==&#x6301;&#x4E45;&#x5316;&#x6570;&#x636E;&#x5728;&#x670D;&#x52A1;&#x91CD;&#x542F;&#x7684;&#x65F6;&#x5019;,&#x6570;&#x636E;&#x4F1A;&#x8FDB;&#x884C;&#x6062;&#x590D;,&#x6570;&#x636E;&#x8FD8;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6D88;&#x8D39;.&#x4F46;&#x662F;&#x975E;&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;&#x5728;&#x670D;&#x52A1;&#x5668;&#x91CD;&#x542F;&#x7684;&#x65F6;&#x5019;,&#x4F1A;&#x81EA;&#x52A8;&#x7684;&#x88AB;&#x4E22;&#x5F03;&#x6389;==.</p>
+<p>&#x78C1;&#x76D8;&#x53EA;&#x662F;&#x5E2E;&#x6211;&#x4EEC;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;,&#x4F46;&#x662F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x751F;&#x4EA7;&#x5F88;&#x5FEB;,&#x6D88;&#x8D39;&#x5F88;&#x6162;&#x6570;&#x636E;&#x843D;&#x76D8;&#x4E86;,&#x6211;&#x4EEC;&#x548B;&#x53BB;&#x6D88;&#x8D39;&#x6570;&#x636E;&#x5462;?&#x600E;&#x4E48;&#x4ECE;&#x78C1;&#x76D8;&#x4E2D;&#x8BFB;&#x53D6;?</p>
+<p>&#x6709;&#x4EBA;&#x4F1A;&#x95EE;&#x961F;&#x5217;&#x4E0D;&#x662F;&#x6709;&#x5E8F;&#x7684;&#x5417;?&#x5728;&#x7D22;&#x5F15;&#x6301;&#x4E45;&#x5316;&#x7AE0;&#x4E2D;&#x4E0D;&#x662F;&#x8BF4;&#x8FC7;&#x7D22;&#x5F15;&#x90FD;&#x662F;&#x8FFD;&#x52A0;&#x7684;&#x5F62;&#x5F0F;&#x5199;&#x5230;&#x78C1;&#x76D8;&#x7684;&#x5417;?&#x90A3;&#x6211;&#x4EEC;&#x6D88;&#x8D39;&#x4ECE;&#x5934;&#x5230;&#x5C3E;&#x53BB;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5C31;&#x884C;&#x4E86;&#x5440;. </p>
+<p>&#x4ECE;&#x5934;&#x5230;&#x5C3E;&#x80AF;&#x5B9A;&#x662F;&#x6CA1;&#x9519;&#x7684;.&#x4F46;&#x8FD9;&#x6709;&#x51E0;&#x4E2A;&#x5176;&#x4ED6;&#x7EC6;&#x8282;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x6D88;&#x606F;&#x6709;&#x53EF;&#x80FD;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x6301;&#x4E45;&#x5316;,&#x4E00;&#x90E8;&#x5206;&#x662F;&#x975E;&#x6301;&#x5316;&#x7684;.
+,&#x90A3;&#x6211;&#x4EEC;&#x53EA;&#x8BFB;&#x53D6;&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x5C31;&#x4E0D;&#x884C;&#x4E86;.&#x5E76;&#x4E14;&#x5373;&#x4F7F;&#x80FD;&#x5B9E;&#x73B0;,&#x90A3;&#x6D88;&#x8D39;&#x548C;&#x5199;&#x5165;&#x7684;&#x6027;&#x80FD;&#x600E;&#x4E48;&#x8FBE;&#x5230;&#x5E73;&#x8861;&#x5462;?</p>
+<p>RabbitMQ&#x5F00;&#x53D1;&#x8005;&#x4E3A;&#x4E86;&#x8FD9;&#x4E2A;&#x4ED6;&#x4EEC;&#x4E5F;&#x662F;&#x7EDE;&#x5C3D;&#x8111;&#x6C41;&#x7684;&#x3002;</p>
+<p>==&#x628A;&#x4E00;&#x4E2A;&#x6D88;&#x606F;&#x8F6C;&#x6210;&#x6709;&#x591A;&#x4E2A;&#x72B6;&#x6001;,&#x5728;&#x7D22;&#x5F15;&#x548C;&#x6D88;&#x606F;&#x90FD;&#x5728;&#x5185;&#x5B58;,&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x6D88;&#x606F;&#x5728;&#x78C1;&#x76D8;,&#x7D22;&#x5F15;&#x548C;&#x6D88;&#x606F;&#x90FD;&#x5728;&#x78C1;&#x76D8; &#x7B49;&#x51E0;&#x4E2A;&#x72B6;&#x6001;. &#x628A;&#x4E0D;&#x540C;&#x7684;&#x72B6;&#x6001;&#x7684;&#x6D88;&#x606F;&#x653E;&#x5728;&#x4E0D;&#x540C;&#x7684;List &#x91CC;. &#x7136;&#x540E;&#x5728;&#x4E0D;&#x540C;&#x60C5;&#x51B5;&#x4E0B;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8F6C;&#x79FB;.==</p>
+<p>&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x5173;&#x7CFB;&#x53EF;&#x80FD;&#x662F;RabbitMQ&#x6A21;&#x5757;&#x4E2D;&#x6700;&#x4E3A;&#x590D;&#x6742;&#x903B;&#x8F91;&#x4E4B;&#x4E00;&#x4E86;.&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x7F15;&#x7F15;.</p>
+<p>==&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x91CC;&#x90FD;&#x6709; Q1,Q2,Q3,Q4  &#x56DB;&#x4E2A;List==.</p>
+<p>&#x8FD9;&#x4E9B;List&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x8BED;&#x8A00;&#x5F00;&#x53D1;&#x91CC;&#x5E38;&#x8BF4;&#x7684;&#x961F;&#x5217;. &#x4F46;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x4E0D;&#x662F;&#x6211;&#x4EEC;&#x8BF4;&#x7684;RabbitMQ&#x7684;&#x961F;&#x5217;.&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x8981;&#x5206;&#x6E05;&#x695A;&#x6765;.</p>
+<p>&#x6D88;&#x606F;&#x6709;&#x51E0;&#x4E2A;&#x72B6;&#x6001; &#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x6D88;&#x606F;&#x90FD;&#x4F1A;&#x7ECF;&#x8FC7;&#x4E0B;&#x9762;&#x51E0;&#x4E2A;&#x72B6;&#x6001;&#xFF0C;&#x8FD9;&#x53EA;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E0D;&#x591F;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4E3A;&#x4E86;&#x4F18;&#x5316;&#x6027;rabbitmq&#x5F00;&#x53D1;&#x8005;&#x4EEC;&#x628A;&#x6D88;&#x606F;&#x8F6C;&#x9762;&#x7684;&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x6982;&#x5FF5;</p>
+<blockquote>
+<ul>
+<li><p><strong>apaha</strong>: &#x7D22;&#x5F15;&#x548C;&#x6570;&#x636E;&#x5168;&#x5728;&#x5185;&#x5B58;</p>
+</li>
+<li><p><strong>beta</strong>: &#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#xFF0C;&#x6570;&#x636E;&#x5728;&#x78C1;&#x76D8;</p>
+</li>
+<li><p><strong>delta</strong>: &#x7D22;&#x5F15;&#x548C;&#x6570;&#x636E;&#x90FD;&#x5728;&#x78C1;&#x76D8;</p>
+</li>
+</ul>
+</blockquote>
+<p>==Q1,&#x548C;Q4 &#x4E24;&#x4E2A;list&#x91CC;&#x7684;&#x6D88;&#x606F;&#x90FD;&#x662F;apaha&#x72B6;&#x6001;==</p>
+<p>==Q2,&#x548C; Q3 &#x90FD;&#x662F;beta&#x72B6;&#x6001;==</p>
+<hr>
+<h4 id="list-&#x6570;&#x636E;&#x6D41;&#x8FC7;&#x7A0B;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;">list &#x6570;&#x636E;&#x6D41;&#x8FC7;&#x7A0B;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;</h4>
+<p><img src="../images/index_in_memory_1.png" alt="image"></p>
+<h5 id="1-&#x5047;&#x5982;&#x5199;&#x5165;&#x7684;&#x65F6;&#x5019;q3&#x91CC;&#x6CA1;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x90A3;&#x5199;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;q4">1. &#x5047;&#x5982;&#x5199;&#x5165;&#x7684;&#x65F6;&#x5019;Q3&#x91CC;&#x6CA1;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x90A3;&#x5199;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;Q4</h5>
+<p>&#x8FD9;&#x4E2A;&#x5F88;&#x597D;&#x7406;&#x89E3;&#x3002;&#x5E76;&#x4E14;&#x6D88;&#x8D39;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x80AF;&#x5B9A; &#x662F;&#x4ECE;Q4&#x91CC;&#x62FF;&#x6570;&#x636E;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7591;&#x95EE;&#x3002;</p>
+<h6 id="11-&#x5C06;q4&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;q3&#x7684;&#x60C5;&#x51B5;">1.1 &#x5C06;Q4&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;Q3&#x7684;&#x60C5;&#x51B5;</h6>
+<p>&#x6BCF;&#x6B21;&#x64CD;&#x4F5C;&#x5B8C;&#x90FD;&#x4F1A;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x5185;&#x5B58;&#x6761;&#x6570;&#x603B;&#x6570; ==&gt;== &#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x91CC;&#x7684;&#x53C2;&#x6570;target_ram_count&#x3002; target_ram_count &#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x8BF7;&#x53C2;&#x8003; &#x5185;&#x5B58;&#x76D1;&#x63A7;&#x7AE0;&#x8282;&#x3002;</p>
+<p>&#x5185;&#x5B58;&#x603B;&#x6761;&#x6570;&#x5305;&#x62EC;&#x5DF2;&#x7ECF;&#x5206;&#x914D;&#x7ED9;&#x4E86;&#x6D88;&#x8D39;&#x8005;&#x5F85;ack&#x7684;&#x6570;&#x91CF;</p>
+<p>&#x8D85;&#x8FC7;&#x6700;&#x5927;&#x6761;&#x6570;&#x9608;&#x503C; Quota= target_ram_count  - ramTotal </p>
+<p>&#x5C06;Q4&#x672B;&#x5C3E;&#x7684;Quota &#x6761;&#x6570;&#x636E;&#x6570;&#x636E;&#x8BFB;&#x5E76;&#x4E14;&#x5199;&#x5165;&#x78C1;&#x76D8;&#xFF08;&#x5047;&#x5982;&#x8FD9;&#x6761;&#x6570;&#x636E;&#x662F;&#x975E;&#x6301;&#x4E45;&#x5316;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x6301;&#x4E45;&#x5316;&#x7684;&#x6570;&#x636E;&#x5C31;&#x4E0D;&#x518D;&#x5199;&#x5165;&#x78C1;&#x76D8;&#xFF0C;&#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5199;&#x5165;&#x8FC7;&#x4E86;&#xFF09;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x5199;&#x5165;&#x53EA;&#x4F1A;&#x5C06; ==&#x6D88;&#x606F;&#x5927;&#x5C0F; &gt; &#x53C2;&#x6570;&#xFF1A;queue_index_embed_msgs_below==
+&#x7684;&#x503C;&#x6D88;&#x606F;&#x5185;&#x5BB9;&#x5199;&#x5230;&#x78C1;&#x76D8;&#xFF0C;==&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#x5E76;&#x4E0D;&#x4F1A;&#x5237;&#x76D8;&#xFF0C;&#x53EA;&#x4FDD;&#x7559;&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#x5728;&#x5185;&#x5B58;==&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x5C31;&#x5C06;&#x8FD9;&#x6D88;&#x606F;&#x5199;&#x5230;Q3&#x7684;&#x5934;&#x90E8;&#xFF0C;Q3&#x662F;&#x8D8A;&#x5728;&#x5934;&#x90E8;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6570;&#x636E;&#x8D8A;&#x665A;&#xFF0C;&#x3002;&#x548C;Q4&#x662F;&#x53CD;&#x8FC7;&#x6765;&#x7684;&#x3002;</p>
+<h6 id="12-&#x5C06;q3&#x7684;&#x6570;&#x636E;&#x4E00;&#x90E8;&#x5206;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#x3002;">1.2 &#x5C06;Q3&#x7684;&#x6570;&#x636E;&#x4E00;&#x90E8;&#x5206;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#x3002;</h6>
+<p>&#x4E0A;&#x9762;&#x53EA;&#x662F;&#x628A;Q4&#x91CC;&#x7684;Quota&#x6761;&#x6D88;&#x606F;&#x8F6C;&#x5230;&#x4E86;Q3&#xFF0C;&#x4F46;&#x662F;&#x5185;&#x5B58;&#x7684;&#x6D88;&#x606F;&#x6761;&#x6570;&#x5E76;&#x6CA1;&#x6709;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x4E00;&#x6B65;&#x91CC;&#xFF0C;==&#x5C06;Q3&#x91CC;&#x7684;&#x6570;&#x636E;Quota &#x6761;&#x6570;&#x636E;&#x4ECE;Q3&#x91CC;&#x6E05;&#x9664;&#xFF0C;&#x4F46;&#x4E0D;&#x7BA1;&#x5982;&#x4F55;&#x90FD;&#x4F1A;&#x4FDD;&#x7559;&#x6700;&#x5F00;&#x5934;&#x7684;&#x90A3;&#x6761;&#x6D88;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Q3&#x672B;&#x5C3E;&#x7684;&#x90A3;&#x4E00;&#x6761;==&#x3002;</p>
+<p>&#x56E0;&#x4E3A;Q3&#x91CC;&#x6700;&#x672B;&#x5C3E;&#x7684;&#x6570;&#x636E;&#x662F;&#x6700;&#x65E9;&#x7684;&#x6570;&#x636E;&#x3002;&#x8FD9;&#x91CC;&#x8981;&#x4FDD;&#x5E95;&#x6700;&#x65E9;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x6D88;&#x8D39;Q4&#x7684;&#x6570;&#x636E;&#x6D88;&#x8D39;&#x5B8C;&#x4E86;&#xFF0C;&#x5C31;&#x518D;&#x4ECE;Q3&#x91CC;&#x5F00;&#x59CB;&#x6D88;&#x8D39;&#x3002;</p>
+<p>&#x5F53;Q3&#x91CC;&#x53EA;&#x6709;&#x4E00;&#x6761;&#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x518D;&#x4ECE;&#x78C1;&#x76D8;&#x4E2D;&#x8BFB;&#x53D6;&#x4E00;&#x6279;&#x51FA;&#x6765;&#x3002;</p>
+<h4 id="2-&#x5199;&#x5165;&#x7684;&#x65F6;&#x5019;q3&#x6709;&#x6570;&#x636E;">2. &#x5199;&#x5165;&#x7684;&#x65F6;&#x5019;Q3&#x6709;&#x6570;&#x636E;</h4>
+<p>&#x5047;&#x5982;&#x5199;&#x5165;&#x7684;&#x65F6;&#x5019;Q3&#x91CC;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x90A3;&#x5C31;&#x5C06;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;Q1. &#x8FD9;&#x65F6;&#x5019;&#x8D70;&#x53BB;&#x5224;&#x65AD;&#x5185;&#x5B58;&#x6761;&#x6570; &#x4E0E; target_ram_count &#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x5C31;&#x6709;&#x70B9;&#x590D;&#x6742;&#x4E86;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;Q1,Q3 &#x80AF;&#x5B9A;&#x90FD;&#x6709;&#x6570;&#x636E;&#xFF0C;Q2,&#x548C;Q4&#x4E5F;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x4E5F;&#x6709;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x8D85;&#x8FC7;&#x6700;&#x5927;&#x6761;&#x6570;&#x9608;&#x503C; Quota= ramTotal - target_ram_count </p>
+<h6 id="21-&#x5C06;q1&#x7684;quota-&#x6761;&#x6570;&#x636E;&#x8F6C;&#x79FB;&#x5230;q2">2.1 &#x5C06;Q1&#x7684;Quota &#x6761;&#x6570;&#x636E;&#x8F6C;&#x79FB;&#x5230;Q2</h6>
+<p>&#x65B9;&#x6CD5;&#x548C;Q4&#x8F6C;&#x79FB;&#x5230;Q3&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x540C;&#x6837;&#x4F1A;&#x5C06;&#x975E;&#x6301;&#x4E45;&#x7684;&#x6570;&#x636E;&#x843D;&#x76D8;&#xFF0C;&#x5E76;&#x4E14;&#x5220;&#x9664;&#x6D88;&#x606F;&#x5185;&#x5BB9;&#xFF0C;&#x5982;&#x679C;&#x7D22;&#x5F15;&#x548C;&#x6D88;&#x606F;&#x662F;&#x5206;&#x5F00;&#x5B58;&#x50A8;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x6D88;&#x606F;&#x4F53;&#x5927;&#x4E8E; &#x914D;&#x7F6E;&#x53C2;&#x6570;:queue_index_embed_msgs_below</p>
+<h6 id="22-&#x5C06;q4&#x91CC;&#x7684;-quota---lenq1--&#x6761;&#x6D88;&#x606F;&#x8F6C;&#x79FB;&#x5230;q3">2.2 &#x5C06;Q4&#x91CC;&#x7684; Quota - len(Q1)  &#x6761;&#x6D88;&#x606F;&#x8F6C;&#x79FB;&#x5230;Q3</h6>
+<p>&#x7531;&#x4E8E;==Q1&#x603B;&#x6761;&#x6570;&#x53EF;&#x80FD;&#x90FD;&#x4E0D;&#x8DB3;Quota &#x6761;&#x3002;&#x6240;&#x4EE5;&#x6709;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x8981;&#x7531;Q4&#x5206;&#x62C5;&#x4E00;&#x70B9;==&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x4EBA;&#x4F1A;&#x95EE;&#xFF0C;==&#x5728;&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x6211;&#x4EEC;&#x4E0D;&#x662F;Q4&#x8F6C;&#x79FB;&#x5230;&#x4E86;Q3&#x4E86;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x91CC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x518D;&#x8F6C;&#x4E00;&#x6B21;==&#xFF1F;</p>
+<p>&#x8FD9;&#x91CC;&#x7531;&#x4E8E;&#x5185;&#x5B58;&#x76D1;&#x63A7;&#x91CC;&#xFF0C;&#x53EF;&#x80FD;&#x5185;&#x5B58;&#x8D8A;&#x6765;&#x8D8A;&#x5C11;&#xFF0C;&#x7B97;&#x51FA;&#x6765;&#x7684;&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x6700;&#x5927;&#x53EF;&#x6301;&#x7EED;&#x6761;&#x6570;&#x8D8A;&#x6765;&#x8D8A;&#x5C11;&#x7B49;&#x60C5;&#x51B5;&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x8FD9;&#x4E00;&#x6B65;&#x64CD;&#x4F5C;</p>
+<h4 id="3-&#x5C06;q2&#x6216;&#x8005;q3&#x7684;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5237;&#x5230;&#x78C1;&#x76D8;">3. &#x5C06;Q2&#x6216;&#x8005;Q3&#x7684;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5237;&#x5230;&#x78C1;&#x76D8;</h4>
+<p>&#x4E0A;&#x9762;&#x64CD;&#x4F5C;&#x53EA;&#x662F;&#x5C06;Q1,Q4&#x7684;&#x6570;&#x636E;&#x8F6C;&#x79FB;&#x5230;Q2&#x548C;Q3&#x91CC;&#x3002;</p>
+<p>&#x867D;&#x7136;&#x90A3;&#x4E9B;&#x548C;&#x7D22;&#x5F15;&#x5206;&#x5F00;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x6E05;&#x9664;&#x4E86;&#xFF0C;&#x4F46;&#x90A3;&#x4E9B;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x8FD8;&#x662F;&#x5360;&#x7528;&#x5185;&#x5B58;&#x7684;&#x3002;</p>
+<p>&#x5728;&#x4E00;&#x5B9A;&#x6761;&#x4EF6;&#x4E0B;&#xFF0C;&#x6240;&#x4EE5;&#x8FD8;&#x662F;&#x8981;&#x5C06;&#x4E00;&#x90E8;&#x5206;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x4E5F;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x79FB;&#x9664;&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x6570;&#x636E;&#x4E00;&#x76F4;&#x5728;&#x5199;&#x5165;&#xFF0C;&#x4F46;&#x662F;&#x6D88;&#x8D39;&#x901F;&#x5EA6;&#x5B8C;&#x5168;&#x8DDF;&#x4E0D;&#x4E0A;&#x3002;</p>
+<p>&#x90A3;&#x5C31;&#x5F97;&#x628A;&#x961F;&#x5217;&#x4E2D;&#x95F4;&#x90A3;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#x65E0;&#x5168;&#x5237;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x5728;&#x6D88;&#x8D39;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x518D;&#x4ECE;&#x78C1;&#x76D8;&#x4E2D;&#x6162;&#x6162;&#x8BFB;&#x53D6;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x4FDD;&#x8BC1;&#x4E86;==&#x6D88;&#x8D39;&#x548C;&#x5199;&#x5165;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x4E0D;&#x4F1A;&#x7ACB;&#x9A6C;&#x4E0B;&#x964D;==&#x3002;</p>
+<p>&#x6BCF;&#x6B21;&#x8981;&#x5237;&#x591A;&#x5C11;&#x6761;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x6839;&#x636E;&#x4EE5;&#x4E0B;&#x7B97;&#x6CD5;</p>
+<pre><code>%% &#x62FF;&#x5230;&#x5F53;&#x524D;&#x961F;&#x5217;&#x5141;&#x8BB8;&#x7684;beta&#x7C7B;&#x578B;&#x7684;&#x6D88;&#x606F;&#x4E0A;&#x9650;
+permitted_beta_count(#vqstate { len = 0 }) -&gt;
+    infinity;
+
+permitted_beta_count(#vqstate { target_ram_count = 0, q3 = Q3 }) -&gt;
+    %% rabbit_queue_index:next_segment_boundary(0)&#x62FF;&#x5230;0&#x5BF9;&#x5E94;&#x7684;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;SeqId
+    lists:min([?QUEUE:len(Q3), rabbit_queue_index:next_segment_boundary(0)]);
+
+permitted_beta_count(#vqstate { q1               = Q1,
+                                q4               = Q4,
+                                target_ram_count = TargetRamCount,
+                                len              = Len }) -&gt;
+    BetaDelta = Len - ?QUEUE:len(Q1) - ?QUEUE:len(Q4),
+    lists:max([rabbit_queue_index:next_segment_boundary(0),
+               BetaDelta - ((BetaDelta * BetaDelta) div
+                                (BetaDelta + TargetRamCount))]).
+</code></pre><pre><code>%% &#x5F53;&#x524D;beta&#x7C7B;&#x578B;&#x7684;&#x6D88;&#x606F;&#x5927;&#x4E8E;&#x5141;&#x8BB8;&#x7684;beta&#x6D88;&#x606F;&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x5219;&#x5C06;beta&#x7C7B;&#x578B;&#x591A;&#x4F59;&#x7684;&#x6D88;&#x606F;&#x8F6C;&#x5316;&#x4E3A;deltas&#x7C7B;&#x578B;&#x7684;&#x6D88;&#x606F;
+    case chunk_size(?QUEUE:len(Q2) + ?QUEUE:len(Q3),
+                    permitted_beta_count(State1)) of
+        S2 when S2 &gt;= ?IO_BATCH_SIZE -&gt;
+            %% There is an implicit(&#x542B;&#x84C4;), but subtle(&#x5FAE;&#x5999;), upper bound here. We
+            %% may shuffle a lot of messages from Q2/3 into delta, but
+            %% the number of these that require any disk operation,
+            %% namely index writing, i.e. messages that are genuine
+            %% betas and not gammas, is bounded by the credit_flow
+            %% limiting of the alpha-&gt;beta conversion above.
+            %% &#x5C06;S2&#x4E2A;betas&#x7C7B;&#x578B;&#x7684;&#x6D88;&#x606F;&#x8F6C;&#x5316;&#x4E3A;deltas&#x7C7B;&#x578B;&#x7684;&#x6D88;&#x606F;
+            push_betas_to_deltas(S2, State1);
+        _  -&gt;
+            State1
+    end.
+</code></pre><p>==&#x6839;&#x636E; &#x6D88;&#x606F;&#x603B;&#x91CF; &#xFF0C;&#x53EA;&#x6709;&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x6570;&#x636E;&#x4E0D;&#x5728;&#x5185;&#x5B58;&#xFF08;beta&#x72B6;&#x6001;&#xFF09;&#x7684;&#x6D88;&#x606F;&#x603B;&#x91CF; &#xFF0C;&#x4EE5;&#x53CA; &#x6700;&#x5927;&#x53EF;&#x5B58;&#x5185;&#x5B58;&#x7684;&#x603B;
+&#x6570; &#x7B97;&#x51FA;&#x4E00;&#x4E2A;&#x503C; &#xFF0C;&#x518D;&#x4E0E;Q2,Q3 &#x7684;&#x603B;&#x548C;&#x5BF9;&#x6BD4;,&#x7B97;&#x51FA;&#x503C;S2. &#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x5DEE;&#x503C;S2 &gt;= 2048 &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FDB;&#x884C;&#x5C06; S2 &#x6761;&#x6D88;&#x606F;&#x7D22;&#x5F15;&#x5237;&#x5230;&#x78C1;&#x76D8;&#x3002;==</p>
+<blockquote>
+<p>BetaDelta &#x80AF;&#x5B9A;&#x662F; &gt;= len(Q2)+len(Q3)&#x7684;&#xFF0C;Q2,Q3&#x53EA;&#x662F;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#x7D22;&#x5F15;&#x5728;&#x5185;&#x5B58;&#x6570;&#x636E;&#x5728;&#x78C1;&#x76D8;&#x7684;&#x7D22;&#x5F15;&#x6570;&#x636E;</p>
+</blockquote>
+<p>==TargetRamCount &#x5927;&#x4E0D;&#x662F;&#x4EE3;&#x8868;&#x5185;&#x5B58;&#x53EF;&#x80FD;&#x8FD8;&#x6BD4;&#x8F83;&#x5145;&#x8DB3;&#x4E48;,&#x4E3A;&#x4EC0;&#x4E48;&#x53CD;&#x800C;&#x8FD8;&#x8981;&#x5237;&#x66F4;&#x591A;&#x76D8;?==</p>
+<blockquote>
+<p>&#x8FD9;&#x662F;&#x7531;&#x4E8E;TargetRamCount &#x7684;&#x503C;&#x961F;&#x5217;&#x5E73;&#x5747;&#x6301;&#x7EED;&#x65F6;&#x95F4; * &#x901F;&#x7387;&#x4E4B;&#x548C;&#x3002;</p>
+<p>&#x5E76;&#x4E14; TargetRamCount  &#x90FD;&#x4EA7;&#x751F;&#x503C;&#x4E86;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x610F;&#x5473;&#x7740;erlang&#x865A;&#x62DF;&#x673A;&#x5185;&#x5B58;&#x5360;&#x6BD4;&#x8D85;&#x8FC7;&#x4E00;&#x5B9A;&#x6BD4;&#x4F8B;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5C06;&#x66F4;&#x591A;&#x7684;&#x6570;&#x636E;&#x5237;&#x5230;&#x78C1;&#x76D8;&#x3002;&#x4EE5;&#x4FDD;&#x969C;&#x540E;&#x9762;&#x5185;&#x5B58;&#x66F4;&#x5FEB;&#x7684;&#x91CA;&#x653E;&#x51FA;&#x6765;&#x3002;</p>
+</blockquote>
+<p>==&#x5728;&#x5185;&#x5B58;&#x4E0D;&#x591F;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E5F;&#x5C06;&#x6700;&#x5C11;&#x5237; 16384 &#x6761;&#x6D88;&#x606F;&#x5230;&#x78C1;&#x76D8;==&#x3002;</p>
+<p>&#x5982;&#x679C;Q2,Q3&#x7684;&#x6D88;&#x606F;&#x603B;&#x548C;&#x8D85;&#x8FC7;16384&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x3002;&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x6587;&#x4EF6;&#x6700;&#x591A;&#x5B58;16384&#x6761;&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x540C;&#x65F6;&#x8FD8;&#x8003;&#x6EE4;&#x4E86;&#x4E00;&#x6B21;&#x6027;&#x5F80;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x5199;&#x5165;16384&#x6761;&#x6D88;&#x606F;&#xFF0C;&#x8003;&#x6EE4;&#x4E86;&#x78C1;&#x76D8;&#x7684;&#x987A;&#x5E8F;IO&#x95EE;&#x9898;&#x3002;</p>
+<p>1). &#x4F18;&#x5148;&#x5C06;Q3&#x91CC;&#x7684;&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#x5237;&#x5230;&#x78C1;&#x76D8;&#xFF0C;&#x4FDD;&#x7559; Q3&#x91CC;&#x7684;&#x6700;&#x65E9;&#x7684;&#x90A3;&#x4E2A;&#x7D22;&#x5F15;&#x4E0D;&#x5237;&#x76D8;&#x3002;</p>
+<p>2). &#x518D;&#x5C06;Q2&#x91CC;&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#x5237;&#x76D8;</p>
+<p>3). &#x7D22;&#x5F15;&#x5237;&#x76D8;&#x6761;&#x6570;&#x6700;&#x591A;&#x53EA;&#x5237; &#x4E0A;&#x9762;&#x7B97;&#x51FA;&#x6765;&#x7684; S2 &#x6761;&#x3002;</p>
+<p>4). &#x7D22;&#x5F15;&#x5237;&#x76D8;&#x5B8C;&#x6210;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x6761;&#x6D88;&#x606F;&#x7D22;&#x5F15;&#x5C06;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x5220;&#x9664;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x6700;&#x5927;ReqId&#x548C;&#x6700;&#x5C0F;ReqId&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x653E;&#x5728;deltas &#x53D8;&#x91CF;&#x91CC;</p>
+<h4 id="4-&#x6570;&#x636E;&#x6D88;&#x8D39;">4. &#x6570;&#x636E;&#x6D88;&#x8D39;</h4>
+<h6 id="41-&#x4F18;&#x5148;&#x4ECE;q4&#x91CC;&#x6D88;&#x8D39;&#x6570;&#x636E;">4.1 &#x4F18;&#x5148;&#x4ECE;Q4&#x91CC;&#x6D88;&#x8D39;&#x6570;&#x636E;</h6>
+<h6 id="42-&#x5047;&#x5982;q4&#x91CC;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x4E86;&#xFF0C;&#x90A3;&#x5C31;&#x518D;&#x4ECE;q3&#x91CC;&#x6D88;&#x8D39;&#x6570;&#x636E;">4.2 &#x5047;&#x5982;Q4&#x91CC;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x4E86;&#xFF0C;&#x90A3;&#x5C31;&#x518D;&#x4ECE;Q3&#x91CC;&#x6D88;&#x8D39;&#x6570;&#x636E;</h6>
+<p>1). &#x5047;&#x5982;Q3&#x91CC;&#x6CA1;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x5219;&#x8BA4;&#x4E3A;&#x6CA1;&#x6709;&#x6570;&#x636E;</p>
+<p>2). &#x56E0;&#x4E3A;Q3&#x91CC;&#x6700;&#x5F00;&#x59CB;&#x662F;&#x4ECE;Q4&#x91CC;&#x8F6C;&#x79FB;&#x8FC7;&#x53BB;&#x7684;&#xFF0C;&#x5E76;&#x4E14;Q3&#x91CC;&#x7684;&#x6570;&#x636E;&#x5237;&#x76D8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7B2C;&#x4E00;&#x6761;&#x6570;&#x636E;&#x662F;&#x7EDD;&#x4E0D;&#x5237;&#x76D8;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x4FDD;&#x8BC1;&#x4E86;&#x6570;&#x636E;&#x987A;&#x5E8F;&#x6027;&#x3002;&#x5982;&#x679C;&#x4ECE;Q3&#x91CC;&#x8BFB;&#x53D6;&#x51FA;&#x4E00;&#x6761;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;Q3&#x4E3A;&#x7A7A;&#x4E86;&#xFF0C;&#x5219;&#x4ECE;&#x78C1;&#x76D8;&#x4E2D;&#x52A0;&#x8F7D;&#x6570;&#x636E;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="写入过程-索引持久化.html" class="navigation navigation-prev " aria-label="Previous page: 写入过程-索引持久化">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="消息消费.html" class="navigation navigation-next " aria-label="Next page: 消息消费">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"写入过程-索引在内存的数据结构","level":"1.3.5","depth":2,"next":{"title":"消息消费","level":"1.3.6","depth":2,"path":"实现原理/消息消费.md","ref":"实现原理/消息消费.md","articles":[]},"previous":{"title":"写入过程-索引持久化","level":"1.3.4","depth":2,"path":"实现原理/写入过程-索引持久化.md","ref":"实现原理/写入过程-索引持久化.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"实现原理/写入过程-索引在内存的数据结构.md","mtime":"2019-08-15T07:07:11.292Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-15T07:19:34.491Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

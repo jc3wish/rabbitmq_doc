@@ -1,0 +1,581 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>启动过程 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="连接和通道.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../install/">
+            
+                <a href="../install/">
+            
+                    
+                    安装部署
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../install/erlang.html">
+            
+                <a href="../install/erlang.html">
+            
+                    
+                    Erlang安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../install/sourceCode.html">
+            
+                <a href="../install/sourceCode.html">
+            
+                    
+                    源码安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../install/rpm.html">
+            
+                <a href="../install/rpm.html">
+            
+                    
+                    rpm安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../install/cluster_install.html">
+            
+                <a href="../install/cluster_install.html">
+            
+                    
+                    集群搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    实现原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="启动.html">
+            
+                <a href="启动.html">
+            
+                    
+                    启动过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="连接和通道.html">
+            
+                <a href="连接和通道.html">
+            
+                    
+                    连接和通道
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="写入概要.html">
+            
+                <a href="写入概要.html">
+            
+                    
+                    写入概要
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="写入过程-索引持久化.html">
+            
+                <a href="写入过程-索引持久化.html">
+            
+                    
+                    写入过程-索引持久化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="写入过程-索引在内存的数据结构.html">
+            
+                <a href="写入过程-索引在内存的数据结构.html">
+            
+                    
+                    写入过程-索引在内存的数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="消息消费.html">
+            
+                <a href="消息消费.html">
+            
+                    
+                    消息消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="确认机制.html">
+            
+                <a href="确认机制.html">
+            
+                    
+                    确认机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="事务.html">
+            
+                <a href="事务.html">
+            
+                    
+                    事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="队列速率.html">
+            
+                <a href="队列速率.html">
+            
+                    
+                    队列速率
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="RabbitMQ内存监控.html">
+            
+                <a href="RabbitMQ内存监控.html">
+            
+                    
+                    RabbitMQ内存监控
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="限流机制.html">
+            
+                <a href="限流机制.html">
+            
+                    
+                    限流机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="RabbitMQ Manager插件管理统计模块.html">
+            
+                <a href="RabbitMQ Manager插件管理统计模块.html">
+            
+                    
+                    RabbitMQ Manager插件管理统计模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="脑裂丢数调研.html">
+            
+                <a href="脑裂丢数调研.html">
+            
+                    
+                    脑裂丢数调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >启动过程</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="rabbitmq-&#x542F;&#x52A8;&#x8FC7;&#x7A0B;">RabbitMQ &#x542F;&#x52A8;&#x8FC7;&#x7A0B;</h1>
+<p>&#x8FDB;&#x7A0B;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>/usr/local/erl18.3/erts-7.3/bin/beam.smp -W w -A 64 -P 1048576 -K true -B i -- -root /usr/local/erl18.3 -progname erl -- -home /var/lib/rabbitmq -- -pa /usr/lib/rabbitmq/lib/rabbitmq_server-3.6.1/ebin -noshell -noinput -s rabbit boot -sname rabbitmqTest199@rabbitmqTest199 -boot start_sasl -config /etc/rabbitmq/rabbitmq -kernel inet_default_connect_options [{nodelay,true}] -rabbit tcp_listeners [{&quot;0.0.0.0&quot;,5672}] -sasl errlog_type error -sasl sasl_error_logger false -rabbit error_logger {file,&quot;/data/rabbitmq/log/rabbitmqTest199@rabbitmqTest199.log&quot;} -rabbit sasl_error_logger {file,&quot;/data/rabbitmq/log/rabbitmqTest199@rabbitmqTest199-sasl.log&quot;} -rabbit enabled_plugins_file &quot;/etc/rabbitmq/enabled_plugins&quot; -rabbit plugins_dir &quot;/usr/lib/rabbitmq/lib/rabbitmq_server-3.6.1/plugins&quot; -rabbit plugins_expand_dir &quot;/data/rabbitmq/mnesia/rabbitmqTest199@rabbitmqTest199-plugins-expand&quot; -os_mon start_cpu_sup false -os_mon start_disksup false -os_mon start_memsup false -mnesia dir &quot;/data/rabbitmq/mnesia/rabbitmqTest199@rabbitmqTest199&quot; -kernel inet_dist_listen_min 25672 -kernel inet_dist_listen_max 25672
+</code></pre><h3 id="&#x53C2;&#x6570;&#x89E3;&#x6790;">&#x53C2;&#x6570;&#x89E3;&#x6790;</h3>
+<p>-s rabbit boot &#x7B49;&#x4E8E;erl shell&#x811A;&#x672C;&#x7A97;&#x53E3;&#x7684;rabbit::boot() &#x6267;&#x884C;&#xFF0C;-s &#x4E3A;&#x9996;&#x4E2A;&#x6267;&#x884C;&#x7A97;&#x53E3;&#xFF0C;&#x53EF;&#x4EE5;&#x62E5;&#x6709;&#x591A;&#x4E2A;-s &#x53C2;&#x6570;</p>
+<p>-os_mon start_cpu_sup false -os_mon start_disksup false -os_mon start_memsup false</p>
+<p>-os_mon &#x4E3A;&#x542F;&#x52A8;erlang&#x81EA;&#x5E26;&#x7684;&#x4E00;&#x4E9B;&#x76D1;&#x63A7;&#x8FDB;&#x7A0B;&#xFF0C;&#x8BF7;&#x53C2;&#x8003;:<a href="https://blog.csdn.net/pyf725324/article/details/77746321" target="_blank">https://blog.csdn.net/pyf725324/article/details/77746321</a></p>
+<h5 id="boot-&#x65B9;&#x6CD5;">boot() &#x65B9;&#x6CD5;</h5>
+<p>boot &#x65B9;&#x6CD5;&#x91CC;&#x6267;&#x884C;&#x4E86; rabbit_mnesia:check_cluster_consistency()</p>
+<p>&#x9996;&#x5148; rabbitmq &#x4F1A;&#x5148;&#x628A;&#x5148;&#x786E;&#x8BA4; mnesia &#x5B58;&#x6D3B;&#x8282;&#x70B9;&#x662F;&#xFF0C;&#x786E;&#x4FDD;&#x548C;&#x5F53;&#x524D;&#x6574;&#x4E2A;&#x96C6;&#x7FA4;&#x4E2D;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x7684;&#x6570;&#x636E;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF0C;&#x5728;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x4F1A;&#x628A;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x7684;mnesia &#x7684;&#x4FE1;&#x606F;&#x7ED9;&#x5220;&#x9664;&#x6389;&#xFF0C;&#x518D;&#x4ECE;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x4E2D;&#x540C;&#x6B65;&#x8FC7;&#x6765;</p>
+<h4 id="&#x542F;&#x52A8;&#x52A0;&#x8F7D;">&#x542F;&#x52A8;&#x52A0;&#x8F7D;</h4>
+<p>1 : &#x6240;&#x6709;&#x63D2;&#x4EF6;&#xFF08;&#x6BCF;&#x6B21;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x4F1A;&#x4E8B;&#x5148;&#x628A;&#x63D2;&#x4EF6;&#x76EE;&#x5F55;&#x4E0B;&#x7684;beam &#x5220;&#x9664;&#x6389;&#xFF0C;&#x91CD;&#x65B0;&#x89E3;&#x538B;&#xFF09; 
+2 : os_mon
+3 : mnesia
+4 : rabbit</p>
+<p><strong>&#x5907;&#x6CE8;&#xFF1A;</strong>&#x867D;&#x7136;&#x52A0;&#x8F7D;&#x987A;&#x5E8F;&#x662F;&#x8FD9;&#x6837;&#xFF0C;&#x4F46;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x4E4B;&#x95F4;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x76F8;&#x4E92;&#x4F9D;&#x61D2;&#xFF0C;&#x4ED6;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x56FE;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x8C01;&#x5148;&#x542F;&#x52A8;&#xFF0C;&#x6839;&#x636E;&#x751F;&#x6210;&#x7684;&#x5411;&#x91CF;&#x56FE;&#x6765;&#x51B3;&#x5B9A;</p>
+<p>&#x8BF7;&#x53C2;&#x8003; rabbit.erl &#x4E2D;&#x7684; -rabbit_boot_step</p>
+<h6 id="rabbitmnesiainit">rabbit_mnesia::init()</h6>
+<p>&#x4F1A;&#x6267;&#x884C;&#x4ECE;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x4E0A;&#x91CD;&#x65B0;&#x540C;&#x6B65;&#x6570;&#x636E;&#x8FC7;&#x6765;&#x3002;&#x4EE5;&#x96C6;&#x7FA4;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x4E3A;&#x51C6;</p>
+<p>&#x5982;&#x679C;&#x5728;&#x542F;&#x52A8;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;mnesia&#x8FD8;&#x6CA1;&#x6B65;&#x6570;&#x636E;&#x6216;&#x8005;&#x8FD8;&#x6CA1;&#x540C;&#x6B65;&#x5B8C;&#xFF0C;&#x96C6;&#x7FA4;&#x4E2D;&#x6240;&#x6709;&#x5176;&#x4ED6;&#x8282;&#x70B9;&#x90FD;&#x5B95;&#x673A;&#x4E86;&#xFF0C;&#x4E0D;&#x597D;&#x610F;&#x601D;&#xFF0C;game over( &#x5F53;&#x524D;&#x53EA;&#x662F;&#x731C;&#x6D4B;&#xFF0C;&#x6CA1;&#x5B9E;&#x9645;&#x6D4B;&#x8BD5; )</p>
+<h6 id="rabbitrecovery">rabbit::recovery()</h6>
+<p>on_node_up(Node)</p>
+<p>&#x904D;&#x5386;mnesia&#x91CC;&#x7684;rabbit_queue &#x8868;&#x91CC;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x67E5;&#x627E; &#x961F;&#x5217;&#x6CA1;&#x6709;&#x4ECE;&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x4E14;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x662F;&#x5728;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684;  &#x5E76;&#x4E14;&#x540C;&#x65F6;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x7684;PID &#x662F;&#x6CA1;&#x6709;&#x8FD0;&#x884C;&#x7684;&#x72B6;&#x6001;&#x4E0B;&#xFF0C;&#x5220;&#x9664;&#x5F53;&#x524D;&#x8FD9;&#x6761;&#x6570;&#x636E;&#x3001;&#x540C;&#x65F6;&#x5220;&#x9664;&#x8DEF;&#x7531;&#xFF0C;&#x4EA4;&#x6362;&#x673A;&#x7684;&#x7ED1;&#x5B9A;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x5408;&#x5E76;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x4E2D;&#x64CD;&#x4F5C;</p>
+<p>find_durable_queues()  &#x4ECE;rabbit_durable_queue&#x8868;&#x4E2D;&#x641C;&#x7D22;&#x51FA;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x6301;&#x4E45;&#x5316;&#x7684;&#x961F;&#x5217;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x975E;&#x6301;&#x4E45;&#x7684; rabbit_queue &#x8868;&#x91CC;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x6570;&#x636E;&#x7684;&#x60C5;&#x51B5;&#x4E0B;</p>
+<p>&#x904D;&#x5386;&#x542F;&#x52A8; find_durable_queues()  &#x627E;&#x5230;&#x7684;&#x961F;&#x5217;&#xFF0C;rabbit_variable_queue::start(QName)</p>
+<p>rabbit_variable_queue &#x8FD9;&#x4E2A;&#x6A21;&#x677F;&#x662F;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x7684;&#x3002;{backing_queue_module, rabbit_variable_queue}</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x6709;&#x80FD;&#x529B;&#x91CD;&#x5199;&#x8FD9;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x662F;&#x53EF;&#x4EE5;&#x5728;&#x914D;&#x7F6E;&#x4E2D;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#xFF0C;&#x5E76;&#x4E14;&#x8FDB;&#x884C;&#x7D22;&#x5F15;&#x6062;&#x590D; &#x3002;&#x540C;&#x65F6;&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x518D;&#x521B;&#x5EFA; 2&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x3002;</p>
+<p><strong>rabbit_msg_store&#xFF1A; TRANSIENT_MSG_STORE</strong>    &#x8FD9;&#x4E2A;&#x8FD9;&#x4E2A;&#x662F;&#x7528;&#x4E8E;&#x6709;&#x5927;&#x6570;&#x636E;&#x5B58;&#x8FDB;&#x7A0B;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x901A;&#x4FE1;&#x8FDB;&#x7A0B;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4ECE;&#x5927;&#x6570;&#x636E;&#x6A21;&#x5757;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x6570;&#x636E;&#x975E;&#x6301;&#x4E45;&#x5316;&#xFF09;</p>
+<p><strong>rabbit_msg_store&#xFF1A;PERSISTENT_MSG_STORE</strong>   &#x8FD9;&#x4E2A;&#x8FD9;&#x4E2A;&#x662F;&#x7528;&#x4E8E;&#x6709;&#x5927;&#x6570;&#x636E;&#x5B58;&#x8FDB;&#x7A0B;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x901A;&#x4FE1;&#x8FDB;&#x7A0B;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4ECE;&#x5927;&#x6570;&#x636E;&#x6A21;&#x5757;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#xFF08;&#x6301;&#x4E45;&#x5316;&#x6570;&#x636E;&#xFF09;</p>
+<p>&#x7136;&#x540E;&#x63A5;&#x7740;&#x8FDB;&#x884C;&#x7531;&#x4E3B;&#x8FDB;&#x7A0B;&#x7EDF;&#x4E00;&#x5F80;&#x6240;&#x6709;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x4E2D; &#x53D1;&#x9001; init &#x4FE1;&#x53F7;&#xFF0C;&#x8FDB;&#x884C;&#x961F;&#x5217;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x521D;&#x59CB;&#x5316;</p>
+<p>rabbit_mirror_queue_misc::on_node_up() &#x6062;&#x590D;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;</p>
+<h4 id="&#x6062;&#x590D;&#x8FC7;&#x7A0B;">&#x6062;&#x590D;&#x8FC7;&#x7A0B;</h4>
+<h5 id="a&#x9996;&#x5148;&#x904D;&#x5386;-rabbitqueue-&#x8868;&#xFF0C;&#x627E;&#x5230;-&#x9700;&#x8981;&#x5728;&#x672C;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x505A;&#x955C;&#x50CF;&#x7684;&#x961F;&#x5217;&#x3002;">a.&#x9996;&#x5148;&#x904D;&#x5386; rabbit_queue &#x8868;&#xFF0C;&#x627E;&#x5230; &#x9700;&#x8981;&#x5728;&#x672C;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x505A;&#x955C;&#x50CF;&#x7684;&#x961F;&#x5217;&#x3002;</h5>
+<p>&#x5148;&#x67E5;&#x8BE2;&#x51FA;&#x5F53;&#x524D;&#x9700;&#x8981;&#x505A;&#x955C;&#x50CF;&#x961F;&#x5217;&#x7684;&#x961F;&#x5217;&#x7684;&#x6240;&#x6709;&#x4ECE;&#x8282;&#x70B9;&#xFF0C;&#x518D;&#x628A;&#x901A;&#x8FC7;suggested_queue_nodes &#x51FD;&#x6570;&#x627E;&#x51FA;&#x961F;&#x5217;&#x5EFA;&#x8BAE;&#x5728;&#x54EA;&#x4E9B;&#x8282;&#x70B9;&#x4E0A;&#x9700;&#x8981;&#x505A;&#x955C;&#x50CF;&#x961F;&#x5217;&#xFF0C;&#x518D;&#x548C;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x5BF9;&#x6BD4;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x5728;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x9700;&#x8981;&#x505A;&#x955C;&#x50CF;&#x961F;&#x5217;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x7684;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;</p>
+<p>suggested_queue_nodes &#x51FD;&#x6570; &#x662F;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x7B56;&#x7565;&#x6765;&#x8FDB;&#x884C;&#x8FD0;&#x7B97;&#x7684;&#xFF0C;&#x53C2;&#x8003;&#xFF1A;rabbit_mirror_queue_mode_exactly.erl  </p>
+<p>rabbit_mirror_queue_mode_nodes.erl rabbit_mirror_queue_mode_all.erl &#x8FD9;&#x4E09;&#x4E2A;&#x6587;&#x4EF6;&#x7684; suggested_queue_nodes &#x51FD;&#x6570;</p>
+<p>&#x7528;python&#x8F6C;&#x6362;&#x4E0B;&#xFF0C;&#x5927;&#x6982;&#x4EE5;&#x4E0B;&#x903B;&#x8F91;&#xFF1A;</p>
+<pre><code>need_mirror_queues = []
+for q in rabbit_queue:
+    qSlaveNodeArr = []
+    for sqid in q.Spids:
+        if node(spid) != node():
+            continue
+        else:
+            qSlaveNodeArr.append(node(spid))
+            break
+        if node() in qSlaveNodeArr:
+            pass
+        else:
+            qSlaveNodeArr.append(node())
+
+        suggestedNodes = suggested_queue_nodes(qSlaveNodeArr)
+        if node() in suggestedNodes:
+            need_mirror_queues.append(q)
+
+for q in need_mirror_queues:
+    start_mirror(q)
+</code></pre><h5 id="b-&#x5F00;&#x542F;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;">b. &#x5F00;&#x542F;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;</h5>
+<pre><code>rabbit_mirror_queue_misc::add_mirror() -- &gt;
+
+rabbit_amqqueue_sup_sup:start_queue_process(MirrorNode, Q, slave) --&gt; 
+
+rabbit_amqqueue_sub::start_link()
+</code></pre><p>&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x4E2D;&#x52A0;&#x8F7D;&#x4E86; rabbit_amqqueue_process &#x548C; rabbit_mirror_queue_slave</p>
+<h5 id="c-&#x5F80;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x521D;&#x59CB;&#x5316;&#x6D88;&#x606F;">c. &#x5F80;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x521D;&#x59CB;&#x5316;&#x6D88;&#x606F;</h5>
+<pre><code>rabbit_mirror_queue_slave:go(SPid, SyncMode)
+</code></pre><h5 id="d-&#x5220;&#x9664;&#x6D88;&#x606F;&#x961F;&#x5217;&#x540D;&#x5B57;&#x4E3A;qname&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x6240;&#x6709;&#x7684;&#x6D88;&#x606F;&#x7D22;&#x5F15;&#x78C1;&#x76D8;&#x6587;&#x4EF6;">d. &#x5220;&#x9664;&#x6D88;&#x606F;&#x961F;&#x5217;&#x540D;&#x5B57;&#x4E3A;QName&#x5BF9;&#x5E94;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x9762;&#x6240;&#x6709;&#x7684;&#x6D88;&#x606F;&#x7D22;&#x5F15;&#x78C1;&#x76D8;&#x6587;&#x4EF6;</h5>
+<h5 id="e-&#x5B9E;&#x9645;&#x8C03;&#x7528;-rabbitvariablequeue-&#x8FDB;&#x884C;&#x961F;&#x5217;-&#x7D22;&#x5F15;&#x7B49;&#x5B58;&#x50A8;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;-&#x56E0;&#x4E3A;&#x7D22;&#x5F15;&#x7B49;&#x6587;&#x4EF6;&#x90FD;&#x5220;&#x9664;&#x4E86;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x5B9E;&#x9645;&#x5185;&#x5B58;&#x4E2D;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x4E2D;&#x961F;&#x5217;&#x6570;&#x636E;&#x662F;&#x7A7A;&#x7684;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x6570;&#x636E;&#x6062;&#x590D;&#x8FC7;&#x7A0B;-">e. &#x5B9E;&#x9645;&#x8C03;&#x7528; rabbit_variable_queue &#x8FDB;&#x884C;&#x961F;&#x5217; &#x7D22;&#x5F15;&#x7B49;&#x5B58;&#x50A8;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;( &#x56E0;&#x4E3A;&#x7D22;&#x5F15;&#x7B49;&#x6587;&#x4EF6;&#x90FD;&#x5220;&#x9664;&#x4E86;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x5B9E;&#x9645;&#x5185;&#x5B58;&#x4E2D;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x4E2D;&#x961F;&#x5217;&#x6570;&#x636E;&#x662F;&#x7A7A;&#x7684;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x6570;&#x636E;&#x6062;&#x590D;&#x8FC7;&#x7A0B; )</h5>
+<h5 id="f-&#x5F80;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x7684;&#x8FDB;&#x7A0B;pid&#x53D1;&#x9001;-&#x540C;&#x6B65;&#x6D88;&#x606F;">f. &#x5F80;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x7684;&#x8FDB;&#x7A0B;PID&#x53D1;&#x9001; &#x540C;&#x6B65;&#x6D88;&#x606F;</h5>
+<p>&#x8FD9;&#x4E2A;&#x662F;&#x961F;&#x5217;&#x955C;&#x50CF;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x8D77;&#x6765;&#x540E;&#xFF0C;&#x7531;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x5F80;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x8FD9;&#x4E2A;&#x6D88;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x8003;rabbit_mirror_queue_slave::handle_go() &#x91CC;&#x7684; rabbit_mirror_queue_misc:maybe_auto_sync(Q1)</p>
+<h5 id="g&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x63A5;&#x6536;&#x5230;-syncmirrors-&#x6D88;&#x606F;-&#xFF08;rabbitamqqueueprocess-&#x4E0B;&#xFF09;">g.&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x63A5;&#x6536;&#x5230; sync_mirrors &#x6D88;&#x606F; &#xFF08;rabbit_amqqueue_process &#x4E0B;&#xFF09;</h5>
+<p>&#x5F00;&#x542F;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x5E76;&#x4E14;&#x67E5;&#x627E;&#x5230;&#x5F53;&#x524D;&#x961F;&#x5217;&#x6240;&#x6709;&#x4ECE;&#x8282;&#x70B9;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x5F80;&#x6240;&#x6709;&#x4ECE;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x5E7F;&#x64AD;&#x53D1;&#x9001; sync_start &#x540C;&#x6B65;&#x5F00;&#x59CB;&#x7684;&#x6D88;&#x606F;</p>
+<h5 id="h&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x63A5;&#x6536;&#x5230;-syncstart-&#x6D88;&#x606F;&#xFF08;&#x5728;rabbitmirrorqueueslave-&#x91CC;&#xFF09;">h.&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x63A5;&#x6536;&#x5230; sync_start &#x6D88;&#x606F;&#xFF08;&#x5728;rabbit_mirror_queue_slave &#x91CC;&#xFF09;</h5>
+<p>&#x8FDB;&#x884C;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x662F;&#x6700;&#x65B0;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x56E0;&#x4E3A;&#x6709;&#x53EF;&#x80FD;&#x672C;&#x6765; &#x961F;&#x5217;&#x9700;&#x8981; 1&#x4E3B;&#x591A;&#x4EBA;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53C8;&#x65B0;&#x52A0;&#x4E00;&#x4E2A;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x6765;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x4ECE;&#x8282;&#x70B9;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x662F;&#x548C;&#x4E3B;&#x8282;&#x70B9;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#x4E86;&#x3002;&#x90A3;&#x672C;&#x6765;&#x8FD0;&#x884C;&#x7684;&#x4ECE;&#x8282;&#x70B9;&#x4E0A;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x540C;&#x6B65;&#x7684;&#x3002;</p>
+<p>&#x5DF2;&#x7ECF;&#x540C;&#x6B65;&#x8FC7;&#x8FD4;&#x56DE;&#xFF1A;sync_deny</p>
+<p>&#x9700;&#x8981;&#x540C;&#x6B65;&#x8FD4;&#x56DE; &#xFF1A;sync_ready</p>
+<h5 id="i-&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x7ED9;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;-&#x540C;&#x6B65;&#x6570;&#x636E;">i. &#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x7ED9;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x53D1;&#x9001; &#x540C;&#x6B65;&#x6570;&#x636E;</h5>
+<p>&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x904D;&#x5386;&#x5F53;&#x524D;&#x6240;&#x6709;&#x6D88;&#x606F;&#x540C;&#x6B65;&#x53D1;&#x9001;&#x7ED9;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#xFF0C;&#x518D;&#x7531;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x7ED9;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;</p>
+<p>&#x6BCF;&#x6B21;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x4E4B;&#x524D;&#x4F1A;&#x53D1;&#x9001;&#x4E00;&#x6761; &#x8FD9;&#x662F;&#x7B2C;&#x51E0;&#x6761;&#x6570;&#x636E;. &#x8FD9;&#x6761;&#x6D88;&#x606F;&#x5B58;&#x5728;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x8FDB;&#x7A0B; #state{depth_delta} &#x5B57;&#x6BB5;&#x4E2D;&#xFF0C;&#x5F53;&#x521D;&#x59CB;&#x5316;&#x540C;&#x6B65;&#x8FD1;&#x4E2A;&#x961F;&#x5217;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&gt;0&#x5927;&#x4E8E;&#x4EE3;&#x8868;&#x4E0D;&#x9700;&#x8981;&#x540C;&#x6B65;</p>
+<p><strong>&#x53C2;&#x8003;&#xFF1A;</strong></p>
+<p>rabbit_mirror_queue_slave::master_go()  &#x904D;&#x5386;&#x6240;&#x6709;&#x6D88;&#x606F;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7ED9;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x3002; &#x5F53;&#x904D;&#x5386;&#x5B8C;&#x540E; &#x4F1A;&#x5F80;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x4E00;&#x6761;complete&#x6D88;&#x606F;&#x3002;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x7ED3;&#x675F; </p>
+<p>rabbit_mirror_queue_slave::syncer_loop()  &#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x5728;&#x6B7B;&#x5FAA;&#x73AF;&#x63A5;&#x6536;&#x961F;&#x5217;&#x4E3B;&#x8282;&#x70B9;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x8FC7;&#x6765;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x5F80;&#x4ECE;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x6D88;&#x606F;</p>
+<h5 id="j-&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x5904;&#x7406;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x540C;&#x6B65;&#x8FC7;&#x6765;&#x7684;&#x6D88;&#x606F;">j. &#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x5904;&#x7406;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x540C;&#x6B65;&#x8FC7;&#x6765;&#x7684;&#x6D88;&#x606F;</h5>
+<p>&#x5F53;&#x961F;&#x5217;&#x4ECE;&#x8282;&#x70B9;&#x63A5;&#x6536;&#x5230; sync_start &#x6D88;&#x606F;&#x7684;&#x65F6;&#x5019; &#xFF0C;&#x4F1A;&#x8FDB;&#x5165;&#x4E00;&#x4E2A;&#x6B7B;&#x5FAA;&#x73AF;&#x63A5;&#x6536;&#x6D88;&#x606F;&#x7684;&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x53EA;&#x4F1A;&#x548C; &#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x540C;&#x6B65;&#xFF0C;&#x548C;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#x5EF6;&#x8FDF;</p>
+<p>&#x4ECE;&#x8FDB;&#x7A0B;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;  depth_delta  = undefined&#xFF0C;&#x5F53;&#x7136; depth_delta = 0 &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x4E0D;&#x4F1A;&#x8FDB;&#x5165;&#x63A5;&#x6536;&#x6570;&#x636E;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE;&#x7ED9;&#x540C;&#x6B65;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x540C;&#x6B65;&#x6D88;&#x606F;&#x3002;&#x5728;&#x6570;&#x636E;&#x540C;&#x6B65;&#x5B8C;&#x7684;&#x65F6;&#x5019; &#xFF0C;&#x4ECE;&#x8FDB;&#x7A0B;&#x4F1A;&#x628A;  depth_delta &#x8BBE;&#x7F6E;&#x6210; 0</p>
+<p>rabbit_mirror_queue_slave::handle_cast({sync_start, Ref, Syncer},</p>
+<p>&#x6570;&#x636E;&#x5904;&#x7406;&#x903B;&#x8F91;&#x5927;&#x6982;&#x662F;&#x62FF;&#x5230;&#x6D88;&#x606F;&#x540E;&#x8C03;&#x7528;  rabbit_variable_queue::publish() &#x5F80;&#x961F;&#x5217;&#x8FDB;&#x7A0B;&#x4E2D;&#x5199;&#x6D88;&#x606F;</p>
+<p>&#x8BF7;&#x53C2;&#x8003;&#x65B9;&#x6CD5;&#xFF1A;rabbit_mirror_queue_slave::slave_sync_loop</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 实现原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="连接和通道.html" class="navigation navigation-next " aria-label="Next page: 连接和通道">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"启动过程","level":"1.3.1","depth":2,"next":{"title":"连接和通道","level":"1.3.2","depth":2,"path":"实现原理/连接和通道.md","ref":"实现原理/连接和通道.md","articles":[]},"previous":{"title":"实现原理","level":"1.3","depth":1,"path":"实现原理/README.md","ref":"实现原理/README.md","articles":[{"title":"启动过程","level":"1.3.1","depth":2,"path":"实现原理/启动.md","ref":"实现原理/启动.md","articles":[]},{"title":"连接和通道","level":"1.3.2","depth":2,"path":"实现原理/连接和通道.md","ref":"实现原理/连接和通道.md","articles":[]},{"title":"写入概要","level":"1.3.3","depth":2,"path":"实现原理/写入概要.md","ref":"实现原理/写入概要.md","articles":[]},{"title":"写入过程-索引持久化","level":"1.3.4","depth":2,"path":"实现原理/写入过程-索引持久化.md","ref":"实现原理/写入过程-索引持久化.md","articles":[]},{"title":"写入过程-索引在内存的数据结构","level":"1.3.5","depth":2,"path":"实现原理/写入过程-索引在内存的数据结构.md","ref":"实现原理/写入过程-索引在内存的数据结构.md","articles":[]},{"title":"消息消费","level":"1.3.6","depth":2,"path":"实现原理/消息消费.md","ref":"实现原理/消息消费.md","articles":[]},{"title":"确认机制","level":"1.3.7","depth":2,"path":"实现原理/确认机制.md","ref":"实现原理/确认机制.md","articles":[]},{"title":"事务","level":"1.3.8","depth":2,"path":"实现原理/事务.md","ref":"实现原理/事务.md","articles":[]},{"title":"队列速率","level":"1.3.9","depth":2,"path":"实现原理/队列速率.md","ref":"实现原理/队列速率.md","articles":[]},{"title":"RabbitMQ内存监控","level":"1.3.10","depth":2,"path":"实现原理/RabbitMQ内存监控.md","ref":"实现原理/RabbitMQ内存监控.md","articles":[]},{"title":"限流机制","level":"1.3.11","depth":2,"path":"实现原理/限流机制.md","ref":"实现原理/限流机制.md","articles":[]},{"title":"RabbitMQ Manager插件管理统计模块","level":"1.3.12","depth":2,"path":"实现原理/RabbitMQ Manager插件管理统计模块.md","ref":"实现原理/RabbitMQ Manager插件管理统计模块.md","articles":[]},{"title":"脑裂丢数调研","level":"1.3.13","depth":2,"path":"实现原理/脑裂丢数调研.md","ref":"实现原理/脑裂丢数调研.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"实现原理/启动.md","mtime":"2019-08-14T09:27:16.255Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-15T07:19:34.491Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
