@@ -34,7 +34,7 @@ ensure_stats_timer(C, P, Msg) ->
     case element(P, C) of
         #state{level = Level, interval = Interval, timer = undefined} = State
           when Level =/= none ->
-            {{_, _, _}, {Hour, Minite, Second}} = calendar:local_time(),
+            { {_, _, _}, {Hour, Minite, Second} } = calendar:local_time(),
             io:format("module:~p , pid:~p, P:~p,ensure_stats_timer Interval: ~p ,Msg:~p, toPid:~p, time: ~p : ~p : ~p ~n",[?MODULE,self(),P,Interval,Msg,self(),Hour,Minite,Second]),
             TRef = erlang:send_after(Interval, self(), Msg),
             setelement(P, C, State#state{timer = TRef});
@@ -194,24 +194,24 @@ aggregated_stats 表里存的是 历史信息，用于曲线 展示所用
                      {1548818465000,10,nil,
                       {1548818470000,0,nil,
                        {1548818505000,1,nil,
-                        {1548818520000,1,nil,{1548818545000,1,nil,nil}}}}}},
-                    0}},
+                        {1548818520000,1,nil,{1548818545000,1,nil,nil} } } } } },
+                    0} },
             {messages_ready,
                 {stats,
                     {5,
                      {1548818465000,10,nil,
                       {1548818470000,0,nil,
                        {1548818505000,1,nil,
-                        {1548818520000,1,nil,{1548818545000,1,nil,nil}}}}}},
-                    0}},
+                        {1548818520000,1,nil,{1548818545000,1,nil,nil} } } } } },
+                    0} },
             {messages_unacknowledged,
                 {stats,
                     {5,
                      {1548818465000,0,nil,
                       {1548818470000,0,nil,
                        {1548818505000,0,nil,
-                        {1548818520000,0,nil,{1548818545000,0,nil,nil}}}}}},
-                    0}}]:
+                        {1548818520000,0,nil,{1548818545000,0,nil,nil} } } } } },
+                    0} }]:
 ```
 
 
